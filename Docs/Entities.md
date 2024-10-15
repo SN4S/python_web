@@ -1,4 +1,4 @@
-# Description of basic entities of "Covid Bat" online restaurant
+# Description of basic entities of "c0vid bat" online food delivery
 
 ## 1. Ingridient
 
