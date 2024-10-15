@@ -78,7 +78,7 @@ List of registered users
 4. If the amount of any ingredient drops to 0, the system automatically removes dishes from the menu where this ingredient is mandatory.
 5. The administrator receives a notification about the need to replenish stocks, if the amount of ingredients is critically low.
 
-# Scenario 3: Updating the status of a customer's order
+## Scenario 3: Updating the status of a customer's order
 
 **Steps:**
 
@@ -87,7 +87,7 @@ List of registered users
 3. The customer receives a notification about the change in the status of the order.
 4. The client can view the current status of his order in his personal account.
 
-# Scenario 4: Customers view a dynamic menu
+## Scenario 4: Customers view a dynamic menu
 
 **Steps:**
 
