@@ -1,6 +1,4 @@
 import sqlite3
-from json import dump
-
 from flask import Flask, render_template, redirect, url_for, request, session, flash,  Blueprint
 import hashlib
 

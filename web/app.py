@@ -1,10 +1,10 @@
 import sqlite3
 from flask import Flask, render_template
 
-from web.bin.routes import routes
+from bin.routes import routes
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'my_secret_key'
 app.register_blueprint(routes)
 
 def get_db_connection():
