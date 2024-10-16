@@ -50,5 +50,5 @@ This project is a web application that will be used for ordering and managing di
 5. **Launch server**
 
    ```bash
-   python web/app.py
+   python3 web/app.py
    ```
