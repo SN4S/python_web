@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}c0vid bat{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/output.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static',filename='img/logo.svg')}}" type="image/x-icon">
+</head>
+<body class="">
+<header class="bg-white rounded-lg shadow-lg">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+        <div class="flex lg:flex-1">
+            <a href="{{ url_for('routes.index') }}" class="-m-1.5 p-1.5">
+                <span class="sr-only">c0vid bat</span>
+                <img class="h-8 w-auto fill-black" src="{{url_for('static',filename='img/logo.svg')}}" alt="c0vid bat">
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                     aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Menu</a>
+            <a href="{{ url_for('routes.about') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:gap-x-6 lg:justify-end">
+            <a href="#" class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true"><img
+                    src="https://img.icons8.com/?size=32&id=15893&format=png&color=000000"></span></a>
+            {% if 'user' in session %}
+            <a href="{{ url_for('routes.logout') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
+                <span aria-hidden="true" >{{ session['user']['login'] }}</span>
+            </a>
+            {% else %}
+            <a href="{{ url_for('routes.login') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
+                Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer class="bg-gray-800 pb-0 mb-0 mx-auto my-2 fixed bottom-0 left-0 w-full">
+    <div class="max-w-7xl mx-auto flex flex-row columns-2 gap-4 sm:items-center justify-end text-xl">
+        <div>
+           <p class="text-white">© 2024 c0vid bat. Made with &hearts; by SN4S</p>
+        </div>
+        <div  class="fill-amber-50">
+            <a class="text-white">
+            <img class="text-white h-20" src="{{url_for('static',filename='img/logo.svg')}}" style="filter: brightness(0) invert(1);" alt=""></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
