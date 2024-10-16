@@ -27,6 +27,9 @@
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
             <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Menu</a>
+            {% if 'user' in session %}
+            <a href="{{ url_for('routes.dashboard') }}" class="text-sm font-semibold leading-6 text-gray-900">Dashboard</a>
+            {% endif %}
             <a href="{{ url_for('routes.about') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:gap-x-6 lg:justify-end">
@@ -47,7 +50,7 @@
 <main>
     {% block content %}{% endblock %}
 </main>
-<footer class="bg-gray-800 pb-0 mb-0 mx-auto my-2 fixed bottom-0 left-0 w-full">
+<footer class="bg-gray-800 pb-0 mb-0 mx-auto my-2 fixed bottom-0 left-0 w-full shadow-lg">
     <div class="max-w-7xl mx-auto flex flex-row columns-2 gap-4 sm:items-center justify-end text-xl">
         <div>
            <p class="text-white">© 2024 c0vid bat. Made with &hearts; by SN4S</p>
