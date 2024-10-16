@@ -8,3 +8,4 @@ web/venv/
 web/ENV/
 web/env.bak/
 web/venv.bak/
+.venv/

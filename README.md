@@ -39,16 +39,16 @@ This project is a web application that will be used for ordering and managing di
 3. **Create virtual environment**
 
    ```bash
-   python3 -m venv env
-   source env/bin/activate
+   python3 -m venv .venv
+   source .venv/bin/activate
    ```
 4. **Install all requirements**
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r web/requirements.txt
    ```
 5. **Launch server**
 
    ```bash
-   python app.py
+   python web/app.py
    ```
