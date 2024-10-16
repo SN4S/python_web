@@ -17,9 +17,11 @@ This project is a web application that will be used for ordering and managing di
 - **python3.12**
     - [Install python](https://www.python.org/downloads/)
 - **pip3**: Package manager for python.
-    - Should come preinstaled with python3.
+    - Should come bundled with python3.
 - **git**: Distributed version control system.
     - [Install git](https://git-scm.com/downloads)
+- **nodejs**: optional
+    - needed only for development purposes
 
 ## Installation
 
@@ -33,4 +35,20 @@ This project is a web application that will be used for ordering and managing di
 
    ```bash
    cd python_web
+   ```
+3. **Create virtual environment**
+
+   ```bash
+   python3 -m venv env
+   source env/bin/activate
+   ```
+4. **Install all requirements**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. **Launch server**
+
+   ```bash
+   python app.py
    ```

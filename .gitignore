@@ -1,3 +1,10 @@
 web/node_modules/
 .idea/
 web/.idea/
+web/.env
+web/.venv
+web/env/
+web/venv/
+web/ENV/
+web/env.bak/
+web/venv.bak/
