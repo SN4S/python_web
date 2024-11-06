@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}ADM Users{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto my-2">
+    {% if users %}
+    <div class="mx-auto">
+        <table class="text-sm text-left text-gray-500 dark:text-gray-400  dataTable max-w-7xl mx-auto bg-gray-100 border-gray-100 rounded-lg ">
+            <thead class="text-xs text-gray-700 uppercase ">
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Login</th>
+                <th scope="col" class="px-6 py-3">Email</th>
+                <th scope="col" class="px-6 py-3">Is Admin</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+    {% for user in users %}
+        <tr class="bg-white ">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-white" >{{ user.id }}</td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-white">{{ user.login }}</td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-white">{{ user.email }}</td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-white">
+                            {% if user.rol == "ADMIN" %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}</td>
+                        <td>
+                            <form action="{{ url_for('users.change_role',user_id = user.id) }}" method="POST">
+                                <button class="btn-danger"   type="submit">Change role</button>
+                            </form>
+                            <a href="{{ url_for('users.edit_user',user_id=user.id) }}">Edit user</a>
+                            <form action="{{ url_for('users.delete_user',user_id = user.id) }}" method="POST">
+                                <button class="btn-danger"   type="submit">Delete user</button>
+                            </form>
+                        </td>
+                    </tr>
+
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        Nothing to show
+    {% endif %}
+</div>
+{% endblock %}

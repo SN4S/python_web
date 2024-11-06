@@ -6,11 +6,12 @@
     <div class="max-w-7xl mx-auto my-2">
         <section class="bg-white p-8 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h2>
-            <p class="text-gray-600 leading-relaxed">
-                Admin DASHBOARD
-            </p>
-            <p class="text-gray-600 leading-relaxed mt-4">
-            </p>
+            <div class="flex flex-row columns-4 gap-4">
+                <a href="{{ url_for('users.users_adm') }}"><div class="bg-white p-8 rounded-lg shadow-lg font-bold"><h3>USERS MANAGEMENT</h3></div></a>
+                <a href="{{ url_for('ingredients.ingredients_adm') }}"><div class="bg-white p-8 rounded-lg shadow-lg font-bold"><h3>INGREDIENTS MANAGEMENT</h3></div></a>
+                <a href="{{ url_for('dishes.dishes_adm') }}"><div class="bg-white p-8 rounded-lg shadow-lg font-bold"><h3>DISHES MANAGEMENT</h3></div></a>
+                <a><div class="bg-white p-8 rounded-lg shadow-lg font-bold"><h3>ORDERS MANAGEMENT</h3></div></a>
+            </div>
         </section>
     </div>
 {% endblock %}

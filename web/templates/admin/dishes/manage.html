@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}ADM Dishes{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto my-2 flex flex-col md:flex-row gap-6">
+    <!-- Dishes Table -->
+    <div class="w-full">
+        {% if dishes_with_ingredients %}
+        <div class="mx-auto">
+            <table class="text-sm text-left text-gray-500 dark:text-gray-400 dataTable max-w-7xl mx-auto bg-gray-100 border-gray-100 rounded-lg">
+                <thead class="text-xs text-gray-700 uppercase">
+                <tr>
+                    <th scope="col" class="px-6 py-3">ID</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">Availability</th>
+                    <th scope="col" class="px-6 py-3">Ingredients</th>
+                    <th scope="col" class="px-6 py-3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+        {% for entry in dishes_with_ingredients %}
+            <tr class="bg-white">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ entry.dish.ID }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ entry.dish.Name }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ entry.dish.Description }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ entry.dish.Availability }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            {% if entry.ingredients %}
+                {{ entry.ingredients | join(', ') }}
+            {% else %}
+                <em>No ingredients</em>
+            {% endif %}
+        </td>
+                <td class="px-6 py-4">
+                    <form action="{{ url_for('dishes.delete_dish', dish_id=entry.dish.ID) }}" method="POST" class="inline">
+                        <button class="text-red-600 hover:text-red-800" type="submit">Delete</button>
+                    </form>
+                    <a href="{{ url_for('dishes.edit_dish', dish_id=entry.dish.ID) }}" class="text-blue-600 hover:text-blue-800 ml-2">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p class="text-gray-700 mx-auto my-auto text-2xl">Nothing to show</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

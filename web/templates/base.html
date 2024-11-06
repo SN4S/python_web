@@ -10,7 +10,7 @@
 <header class="bg-white rounded-lg shadow-lg">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
-            <a href="{{ url_for('routes.index') }}" class="-m-1.5 p-1.5">
+            <a href="{{ url_for('menus.index') }}" class="-m-1.5 p-1.5">
                 <span class="sr-only">c0vid bat</span>
                 <img class="h-8 w-auto fill-black" src="{{url_for('static',filename='img/logo.svg')}}" alt="c0vid bat">
             </a>
@@ -26,21 +26,21 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Menu</a>
+            <a href="{{ url_for('menus.menu') }}" class="text-sm font-semibold leading-6 text-gray-900">Menu</a>
             {% if 'user' in session %}
-            <a href="{{ url_for('routes.dashboard') }}" class="text-sm font-semibold leading-6 text-gray-900">Dashboard</a>
+            <a href="{{ url_for('users.dashboard') }}" class="text-sm font-semibold leading-6 text-gray-900">Dashboard</a>
             {% endif %}
-            <a href="{{ url_for('routes.about') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
+            <a href="{{ url_for('menus.about') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:gap-x-6 lg:justify-end">
             <a href="#" class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true"><img
                     src="https://img.icons8.com/?size=32&id=15893&format=png&color=000000"></span></a>
             {% if 'user' in session %}
-            <a href="{{ url_for('routes.logout') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
+            <a href="{{ url_for('users.logout') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
                 <span aria-hidden="true" >{{ session['user']['login'] }}</span>
             </a>
             {% else %}
-            <a href="{{ url_for('routes.login') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
+            <a href="{{ url_for('users.login') }}" class="text-sm font-semibold leading-6 text-gray-900 my-auto">
                 Log in <span aria-hidden="true">&rarr;</span>
             </a>
             {% endif %}

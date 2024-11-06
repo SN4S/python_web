@@ -26,7 +26,7 @@
             <button type="submit" class="w-full bg-gray-900 text-white font-bold py-3 px-6 shadow hover:bg-gray-700 transition rounded-md focus:ring-4 focus:ring-gray-300">Register</button>
         </form>
         <p class="mt-4 text-sm text-gray-600">Already have an account?
-            <a href="{{ url_for('routes.login') }}" class="text-sky-600 hover:text-sky-700">Log in here</a>.
+            <a href="{{ url_for('users.login') }}" class="text-sky-600 hover:text-sky-700">Log in here</a>.
         </p>
         {% for message in get_flashed_messages() %}
         <p class="mt-2 text-red-500">{{ message }}</p>
