@@ -48,5 +48,27 @@
             <p class="text-gray-700 mx-auto my-auto text-2xl">Nothing to show</p>
         {% endif %}
     </div>
+ <div class="bg-white p-4 ml-4 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold mb-4">Add Dish</h2>
+        <form action="{{ url_for('dishes.dishes_adm') }}" method="POST" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" name="name" id="name" required class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea name="description" id="description" rows="2" class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+            </div>
+            <div>
+                <label for="photo_url" class="block text-sm font-medium text-gray-700">Photo URL</label>
+                <input type="url" name="photo_url" id="photo_url" class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div>
+                <label for="date_of_delivery" class="block text-sm font-medium text-gray-700">Availability</label>
+                <input type="checkbox" name="availability" id="date_of_delivery" class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Dish</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

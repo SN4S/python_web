@@ -18,6 +18,10 @@ def dishes_adm():
         name = request.form['name']
         description = request.form.get('description')
         availability = request.form['availability']
+        if request.form['availability'] == 'on':
+            availability = "Available"
+        else:
+            availability = "Unavailable"
         photo_url = request.form.get('photo_url')
 
         # Insert dish into the database
