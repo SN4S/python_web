@@ -126,32 +126,47 @@ def edit_dish(dish_id):
             return render_template("admin/dishes/edit.html", dish=dish)
 
 # Route to manage dish ingredients
-@dishes.route('/dashboard/dishes/<dish_id>/ingredients', methods=['GET', 'POST'])
-def manage_dish_ingredients(dish_id):
+@dishes.route('/dashboard/dishes/<dish_id>/edit_ingredients', methods=['GET', 'POST'])
+def edit_dish_ingredients(dish_id):
     if 'user' not in session:
         flash('Please log in first.')
         return redirect(url_for('users.login'))
 
     if session.get('user')['rol'] == 'ADMIN':
         conn = get_db_connection()
-        if request.method == 'POST':
-            ingredient_id = request.form['ingredient_id']
-            conn.execute('''
-                INSERT INTO dish_ingredient (DishID, IngredientID)
-                VALUES (?, ?)
-            ''', (dish_id, ingredient_id))
-            conn.commit()
-            flash('Ingredient added to dish.')
-            return redirect(url_for('dishes.manage_dish_ingredients', dish_id=dish_id))
 
-        # Fetch dish details and available ingredients
-        dish = conn.execute('SELECT * FROM dish WHERE ID = ?', (dish_id,)).fetchone()
-        ingredients = conn.execute('SELECT * FROM ingredient').fetchall()
-        dish_ingredients = conn.execute('''
-            SELECT ingredient.*
-            FROM ingredient
-            JOIN dish_ingredient ON ingredient.ID = dish_ingredient.IngredientID
-            WHERE dish_ingredient.DishID = ?
-        ''', (dish_id,)).fetchall()
-        conn.close()
-        return render_template("admin/dishes/ingredients.html", dish=dish, ingredients=ingredients, dish_ingredients=dish_ingredients)
+        if request.method == 'POST':
+            # Update the ingredients for the dish
+            selected_ingredient_ids = request.form.getlist('ingredients')
+
+            # Clear current ingredients for this dish
+            conn.execute('DELETE FROM dish_ingredient WHERE DishID = ?', (dish_id,))
+
+            # Insert selected ingredients into dish_ingredient table
+            for ingredient_id in selected_ingredient_ids:
+                conn.execute('''
+                    INSERT INTO dish_ingredient (DishID, ingredientID) VALUES (?, ?)
+                ''', (dish_id, ingredient_id))
+            conn.commit()
+            conn.close()
+            flash('Ingredients updated successfully.')
+            return redirect(url_for('dishes.dishes_adm'))
+
+        else:
+            # Fetch the dish details
+            dish = conn.execute('SELECT * FROM dish WHERE ID = ?', (dish_id,)).fetchone()
+
+            # Fetch all ingredients
+            all_ingredients = conn.execute('SELECT * FROM ingredient').fetchall()
+
+            # Fetch currently associated ingredients for this dish
+            dish_ingredients = conn.execute('''
+                SELECT ingredientID FROM dish_ingredient WHERE DishID = ?
+            ''', (dish_id,)).fetchall()
+
+            # Extract IDs of current ingredients for easier handling in template
+            current_ingredient_ids = [row['ingredientID'] for row in dish_ingredients]
+
+            conn.close()
+            return render_template("admin/dishes/ingredients.html", dish=dish, all_ingredients=all_ingredients,
+                                   current_ingredient_ids=current_ingredient_ids)

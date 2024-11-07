@@ -38,6 +38,8 @@
                         <button class="text-red-600 hover:text-red-800" type="submit">Delete</button>
                     </form>
                     <a href="{{ url_for('dishes.edit_dish', dish_id=entry.dish.ID) }}" class="text-blue-600 hover:text-blue-800 ml-2">Edit</a>
+                    <a href="{{ url_for('dishes.edit_dish_ingredients', dish_id=entry.dish.ID) }}" class="text-blue-600 hover:text-blue-800 ml-2">INGR</a>
+
                 </td>
             </tr>
         {% endfor %}

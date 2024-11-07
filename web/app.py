@@ -5,6 +5,7 @@ from bin.routes import users
 from bin.menu import menus
 from bin.ingredients import ingredients
 from bin.dishes import dishes
+from bin.orders import orders
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
@@ -12,6 +13,7 @@ app.register_blueprint(users)
 app.register_blueprint(menus)
 app.register_blueprint(ingredients)
 app.register_blueprint(dishes)
+app.register_blueprint(orders)
 
 def get_db_connection():
     conn = sqlite3.connect('sqlite.db')

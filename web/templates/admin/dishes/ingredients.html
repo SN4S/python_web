@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Ingredients for {{ dish.Name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto my-4 ">
+    <h2 class="text-2xl font-bold mb-6">Edit Ingredients for {{ dish.Name }}</h2>
+    <form action="{{ url_for('dishes.edit_dish_ingredients', dish_id=dish.ID) }}" method="POST">
+        <div class="space-y-4">
+            {% for ingredient in all_ingredients %}
+                <div class="flex items-center">
+                    <input type="checkbox" name="ingredients" value="{{ ingredient.ID }}" 
+                           class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                           {% if ingredient.ID in current_ingredient_ids %}checked{% endif %}>
+                    <label for="ingredient_{{ ingredient.ID }}" class="ml-2 text-sm text-gray-700">
+                        {{ ingredient.Name }} (Count: {{ ingredient.Count }})
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Update Ingredients
+        </button>
+        <a href="{{ url_for('dishes.dishes_adm') }}" class="ml-4 text-gray-600 hover:text-gray-800">Cancel</a>
+    </form>
+</div>
+{% endblock %}
